@@ -1,0 +1,556 @@
+/* Learning workspace: restrained controls, prominent evidence and calculation. */
+.learning {
+  background: #f1ede5;
+}
+.learning .site-header {
+  max-width: 1440px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.learning .brand {
+  font-size: 14px;
+}
+.learning .brand span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.learning .page-wrap {
+  max-width: 1440px;
+  padding: 0 28px 50px;
+}
+.learning .chapter-hero {
+  text-align: left;
+  max-width: none;
+  margin: 24px 0;
+}
+.learning .chapter-hero h1 {
+  font-size: 30px;
+  margin: 6px 0;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+.learning .chapter-hero p {
+  margin: 4px 0 !important;
+  font-size: 14px !important;
+}
+.learning .chapter-hero .eyebrow {
+  font-size: 10px !important;
+}
+.learning .workspace,
+.learning .chapter-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.learning .panel,
+.learning .chapter-layout .panel {
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: none;
+}
+.learning .parameter-panel {
+  background: #eae4da;
+  padding: 18px !important;
+}
+.learning .parameter-panel h2 {
+  font-size: 17px;
+}
+.learning .parameter-panel > .eyebrow {
+  margin: 0 0 8px;
+}
+.learning .parameter-panel .field {
+  margin: 12px 0;
+  gap: 4px;
+}
+.learning input[type="number"],
+.learning select {
+  padding: 7px 9px !important;
+  min-height: 36px !important;
+  font-size: 14px !important;
+}
+.learning .parameter-panel label,
+.learning .parameter-panel legend {
+  font-size: 13px;
+}
+.learning .parameter-panel .input-help,
+.learning .parameter-panel small {
+  font-size: 11px;
+  margin: 4px 0;
+}
+.learning .error:empty {
+  display: none;
+}
+.learning .scenario-grid {
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.learning .scenario {
+  padding: 8px;
+  border-radius: 8px;
+  gap: 6px;
+}
+.learning .scenario small {
+  line-height: 1.4;
+}
+.learning .button {
+  padding: 8px 13px;
+  font-size: 12px;
+  border: 1px solid #c8bbae;
+  border-radius: 8px;
+}
+.learning .results > .eyebrow {
+  margin: 0;
+}
+.learning .panel h2 {
+  font-size: 20px;
+}
+.learning #mode-note {
+  margin: 4px 0 18px;
+}
+.visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 25px;
+}
+.learning .visual-grid h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+.learning .chart-box {
+  height: 235px;
+  margin-top: 10px;
+}
+.learning .legend {
+  font-size: 11px;
+  gap: 10px;
+}
+.learning .input-help {
+  font-size: 12px;
+}
+.income-row {
+  margin: 22px 0;
+}
+.income-row header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+.income-row strong {
+  font-size: 22px;
+  line-height: 1.3;
+  font-family: system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.income-track {
+  height: 10px;
+  background: #e6ded3;
+  border-radius: 5px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.income-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.2s;
+}
+.income-row small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.worked-example {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 18px;
+}
+.process-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.process-heading h3 {
+  margin: 0 !important;
+}
+.method-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.method-tabs button {
+  border: 1px solid #d4c9bc;
+  background: transparent;
+  border-radius: 6px;
+  padding: 6px 9px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.method-tabs button[aria-pressed="true"] {
+  background: #3c3025;
+  color: white;
+  border-color: #3c3025;
+}
+.calculation-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.calculation-step {
+  background: #ede6dc;
+  padding: 14px;
+  border-radius: 10px;
+  min-width: 0;
+}
+.calculation-step small {
+  color: #887664;
+  font-size: 11px;
+}
+.calculation-step p {
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.calculation-step strong {
+  font-size: 22px;
+  font-family: system-ui, sans-serif;
+}
+.calculation-step em {
+  display: block;
+  font-size: 11px;
+  font-style: normal;
+  color: #756859;
+  margin-top: 8px;
+}
+.number-details {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 12px;
+}
+.number-details summary {
+  cursor: pointer;
+  color: #796b5d;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.learning .calc-results {
+  gap: 8px;
+}
+.learning .calc-metric {
+  padding: 10px;
+}
+.learning .explanation {
+  margin-left: 292px;
+}
+.learning .explanation > .eyebrow {
+  display: none;
+}
+.learning .explanation h2 {
+  font-size: 18px;
+}
+.learning .formula-list {
+  gap: 12px;
+  margin-top: 10px;
+}
+.learning .formula-list article {
+  padding: 14px;
+}
+.learning .formula-list h3 {
+  font-size: 15px;
+}
+.learning .formula-list p {
+  font-size: 13px;
+}
+.learning .field-grid {
+  gap: 8px;
+}
+.learning .form-section + .form-section {
+  margin-top: 18px;
+  padding-top: 18px;
+}
+.learning .form-section > p {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.learning .form-section > p.eyebrow {
+  display: none;
+}
+.learning .check-list {
+  gap: 8px;
+  margin-top: 12px;
+}
+.learning .check-line {
+  font-size: 12px !important;
+}
+.learning .result-cards {
+  margin: 12px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.learning .result-card {
+  background: #eee7dc;
+  padding: 12px 15px;
+}
+.learning .result-card strong {
+  font-size: 23px;
+}
+.learning .result-section > .eyebrow {
+  font-size: 10px;
+  margin: 0 0 5px;
+}
+.learning .result-section h3 {
+  font-size: 15px;
+  margin: 14px 0 8px;
+}
+.allocation-formula {
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  margin: 8px 0 12px;
+}
+.allocation-bar {
+  height: 22px;
+  background: #d8cfc1;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+}
+.allocation-bar span {
+  background: #718a7a;
+  height: 100%;
+  display: block;
+  transition: width 0.2s;
+}
+.allocation-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 12px;
+  margin-top: 8px;
+  color: #6b675c;
+}
+.condition-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.condition {
+  border: 1px solid #ddd3c6;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+}
+.condition strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.condition.pass {
+  border-top: 3px solid #718a7a;
+}
+.condition.fail {
+  border-top: 3px solid #ba845e;
+}
+.condition span {
+  color: #7c7061;
+}
+.pathway-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pathway {
+  background: #eee8de;
+  padding: 14px;
+  border-radius: 10px;
+}
+.pathway h3 {
+  margin: 0 0 8px !important;
+}
+.pathway p {
+  font-size: 13px;
+  margin: 6px 0;
+}
+.pathway .path-status {
+  color: #8b5c3b;
+  font-weight: bold;
+}
+.learning .learning-note {
+  font-size: 11px;
+}
+.learning .result-list li {
+  font-size: 13px;
+}
+.learning .result-section + .result-section {
+  margin-top: 20px;
+  padding-top: 18px;
+}
+@media (min-width: 1100px) {
+  .learning .parameter-panel {
+    position: sticky;
+    top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+  }
+}
+@media (max-width: 1050px) {
+  .visual-grid {
+    grid-template-columns: 1fr;
+  }
+  .income-comparison #income-bars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .income-row header {
+    display: block;
+  }
+  .income-row strong {
+    display: block;
+    margin-top: 5px;
+  }
+  .income-row {
+    margin: 10px 0;
+  }
+  .calculation-steps {
+    grid-template-columns: 1fr;
+  }
+  .calculation-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+  .condition-cards {
+    grid-template-columns: 1fr;
+  }
+  .condition {
+    padding: 8px;
+  }
+}
+@media (max-width: 760px) {
+  .learning .site-header {
+    padding: 14px 18px;
+    flex-wrap: wrap;
+  }
+  .learning .page-wrap {
+    padding: 0 16px 35px;
+  }
+  .learning .workspace,
+  .learning .chapter-layout {
+    grid-template-columns: 1fr;
+  }
+  .learning .chapter-hero h1 {
+    font-size: 25px;
+  }
+  .learning .parameter-panel {
+    padding: 14px !important;
+  }
+  .chapter-1 .parameter-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+  }
+  .chapter-1 .parameter-panel > .eyebrow,
+  .chapter-1 .parameter-panel > h2,
+  .chapter-1 .parameter-panel > fieldset {
+    grid-column: 1/-1;
+  }
+  .learning .scenario-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .learning .explanation {
+    margin-left: 0;
+  }
+  .learning .panel {
+    padding: 16px;
+  }
+  .learning .formula-list,
+  .pathway-grid {
+    grid-template-columns: 1fr;
+  }
+  .learning .calc-results {
+    grid-template-columns: 1fr;
+  }
+  .income-row strong {
+    font-size: 18px;
+  }
+  .learning .result-card strong {
+    font-size: 19px;
+  }
+  .allocation-formula {
+    font-size: 17px;
+  }
+  .learning .brand span {
+    display: none;
+  }
+  .condition-cards {
+    grid-template-columns: 1fr;
+  }
+  .learning .chapter-hero {
+    margin: 16px 0;
+  }
+  .learning .parameter-panel .form-section .field-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.learning .chapter-hero {
+  margin: 16px 0;
+}
+.learning .chapter-hero h1 {
+  font-size: 28px;
+}
+.learning .results > .eyebrow {
+  display: none;
+}
+.learning .chart-box {
+  height: 190px;
+}
+.learning .income-row {
+  margin: 14px 0;
+}
+.learning .field label.scenario {
+  display: flex;
+}
+.learning .field label.range-label {
+  display: flex;
+}
+.learning .visual-grid > .income-comparison > .input-help {
+  margin: 5px 0;
+}
+.learning .worked-example {
+  margin-top: 14px;
+  padding-top: 12px;
+}
+.learning .calculation-step {
+  padding: 10px 12px;
+}
+.learning .calculation-step strong {
+  font-size: 20px;
+}
+.learning .calculation-step p {
+  margin: 6px 0;
+}
+.learning .chapter-hero p {
+  line-height: 1.5;
+}
+.parameter-toggle {
+  display: none !important;
+}
+@media (max-width: 760px) {
+  .parameter-toggle {
+    display: inline-flex !important;
+    margin-bottom: 14px;
+  }
+  .learning:not(.parameters-open) .parameter-panel {
+    display: none !important;
+  }
+  .learning .parameter-panel {
+    margin-bottom: 0;
+  }
+  .learning .result-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}

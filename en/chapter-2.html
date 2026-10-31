@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore employee income tax and corporate permanent establishments through a cross-border remote-work case."
+    />
+    <title>Cross-border Remote Work | International Taxation</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      .chapter-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+      .chapter-layout .panel {
+        padding: clamp(22px, 3vw, 36px);
+      }
+      .form-section + .form-section {
+        border-top: 1px solid var(--line, #deded8);
+        margin-top: 30px;
+        padding-top: 28px;
+      }
+      .form-section h2,
+      .result-section h2 {
+        font-size: 1.2rem;
+        margin: 0 0 8px;
+      }
+      .form-section > p,
+      .result-section > p {
+        margin: 0 0 20px;
+        color: var(--muted, #777);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .field-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin: 0;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label,
+      .field-label {
+        font-weight: 650;
+        font-size: 0.9rem;
+      }
+      .field input[type="number"],
+      .field select {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid #d3d4cd;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #fff;
+        color: #20221e;
+        font: inherit;
+      }
+      .field small {
+        line-height: 1.5;
+        color: var(--muted, #777);
+      }
+      .check-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .check-line {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        cursor: pointer;
+      }
+      .check-line input {
+        margin: 4px 0 0;
+        accent-color: #526c52;
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+      .result-section + .result-section {
+        margin-top: 28px;
+        padding-top: 25px;
+        border-top: 1px solid var(--line, #deded8);
+      }
+      .result-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .result-card {
+        background: #f3f5ed;
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .result-card span {
+        display: block;
+        color: #626b5e;
+        font-size: 0.8rem;
+        margin-bottom: 7px;
+      }
+      .result-card strong {
+        font-size: clamp(1.2rem, 2vw, 1.65rem);
+        overflow-wrap: anywhere;
+      }
+      .result-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .result-list li {
+        position: relative;
+        padding: 0 0 17px 20px;
+        line-height: 1.7;
+        font-size: 0.93rem;
+      }
+      .result-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 7px;
+        height: 7px;
+        background: #769273;
+        border-radius: 50%;
+      }
+      .result-list li:last-child {
+        padding-bottom: 0;
+      }
+      .form-error {
+        color: #a43b31;
+        background: #fff2ef;
+        padding: 12px 14px;
+        border-radius: 10px;
+        line-height: 1.5;
+        margin: 18px 0 0;
+      }
+      .form-error[hidden] {
+        display: none;
+      }
+      .result-placeholder {
+        color: #796d61;
+      }
+      .reset-row {
+        margin-top: 26px;
+      }
+      .learning-note {
+        margin-top: 22px;
+        font-size: 0.85rem;
+        line-height: 1.75;
+        color: #687067;
+      }
+      @media (max-width: 850px) {
+        .chapter-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        .field-grid,
+        .result-cards {
+          grid-template-columns: 1fr;
+        }
+        .field.full {
+          grid-column: auto;
+        }
+      }
+    </style>
+    <script src="chapter-2.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/learning.css" />
+    <link rel="stylesheet" href="../assets/css/chapter-2-layout.css" />
+    <script defer src="../assets/js/learning.js"></script>
+    <link rel="stylesheet" href="../assets/css/bilingual.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/coin.svg" />
+  </head>
+  <body class="learning chapter-2">
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        >International Taxation <span>WebSource</span></a
+      >
+      <nav class="nav-links" aria-label="Site navigation">
+        <a href="index.html">All chapters</a
+        ><a href="chapter-1.html">Chapter 1</a
+        ><a href="chapter-2.html" aria-current="page">Chapter 2</a
+        ><a
+          class="language-switch"
+          href="../cn/chapter-2.html"
+          lang="zh-CN"
+          hreflang="zh-CN"
+          aria-label="Switch to Chinese"
+          >中文</a
+        >
+      </nav>
+    </header>
+    <main class="page-wrap">
+      <section class="chapter-hero">
+        <p class="eyebrow">CHAPTER 02 / International tax jurisdiction</p>
+        <h1>How is cross-border remote work taxed?</h1>
+        <p>
+          An employee working abroad raises questions about both salary taxation
+          and the employer’s business presence.
+        </p>
+      </section>
+      <section class="case-intro" aria-labelledby="case-title">
+        <div class="case-story">
+          <p class="eyebrow">The case</p>
+          <h2 id="case-title">
+            Zhang moves to Country B. The company stays in Country A.
+          </h2>
+          <p>
+            Zhang lived in Country A and worked for a company there. After
+            moving to Country B, Zhang works from home for the same employer.
+          </p>
+          <p class="case-key">One job, two taxpayers to consider.</p>
+        </div>
+        <div
+          class="relationship"
+          aria-label="A company in Country A employs Zhang, who works remotely in Country B. The company earns business profits; Zhang earns salary."
+        >
+          <a class="relation-node company-node" href="#company-analysis"
+            ><span class="entity-place">Country A · Employer</span
+            ><strong>Company</strong><span>Business profits</span
+            ><span class="entity-question"
+              >What tax presence arises abroad? ↓</span
+            ></a
+          >
+          <div class="relation-link">
+            <span>Employment · Salary</span
+            ><span class="relation-arrow" aria-hidden="true">→</span
+            ><span>← Remote work</span>
+          </div>
+          <a class="relation-node employee-node" href="#employee-analysis"
+            ><span class="entity-place">Country B · Work location</span
+            ><strong>Zhang</strong><span>Salary income</span
+            ><span class="entity-question"
+              >Where is the salary taxed? ↓</span
+            ></a
+          >
+        </div>
+        <p class="case-caption">
+          Below, the work country is B and the home country is A. Assess each
+          taxpayer separately: the employee’s tax position does not determine
+          the company’s.
+        </p>
+      </section>
+      <button
+        class="parameter-toggle button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="scenario"
+      >
+        Adjust inputs <span aria-hidden="true">＋</span>
+      </button>
+      <div class="chapter-layout simulator">
+        <form class="panel parameter-panel" id="scenario" novalidate>
+          <section class="form-section">
+            <p class="eyebrow">THE PERSON</p>
+            <h2>Employee and work location</h2>
+            <p>Enter days of presence and work for the same year.</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="days">Days in work country</label
+                ><input
+                  id="days"
+                  type="number"
+                  min="0"
+                  max="366"
+                  step="1"
+                  value="210"
+                  required
+                /><small>Includes working and non-working days</small>
+              </div>
+              <div class="field">
+                <label for="workdays">Days worked there</label
+                ><input
+                  id="workdays"
+                  type="number"
+                  min="0"
+                  max="366"
+                  step="1"
+                  value="190"
+                  required
+                /><small>Days actually worked in the work country</small>
+              </div>
+              <div class="field">
+                <label for="salary">Annual salary (CNY)</label
+                ><input
+                  id="salary"
+                  type="number"
+                  min="0"
+                  step="any"
+                  value="600000"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="totalwork">Total annual workdays</label
+                ><input
+                  id="totalwork"
+                  type="number"
+                  min="1"
+                  max="366"
+                  step="1"
+                  value="240"
+                  required
+                />
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check-line"
+                ><input id="homeResident" type="checkbox" checked /><span
+                  >The employee retains a home or continuing residence ties in
+                  the home country</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="hostEmployer" type="checkbox" /><span
+                  >Salary is paid by an employer resident in the work
+                  country</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="borne" type="checkbox" /><span
+                  >Salary is borne by the employer’s permanent establishment in
+                  the work country</span
+                ></label
+              >
+            </div>
+          </section>
+          <section class="form-section">
+            <p class="eyebrow">THE BUSINESS</p>
+            <h2>Business in the work country</h2>
+            <p>
+              Enter home-office use, business reasons and contract activities.
+            </p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="remote">Work at foreign home (%)</label
+                ><input
+                  id="remote"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="any"
+                  value="75"
+                  required
+                /><small
+                  >Time worked for the employer at this home as a share of total
+                  time worked for that employer over the relevant 12
+                  months</small
+                >
+              </div>
+              <div class="field">
+                <label for="months">Duration (months)</label
+                ><input
+                  id="months"
+                  type="number"
+                  min="0"
+                  max="120"
+                  step="1"
+                  value="10"
+                  required
+                />
+              </div>
+              <div class="field full">
+                <label for="activity">Main local activity</label
+                ><select id="activity">
+                  <option value="aux">
+                    Internal support or preparatory / auxiliary activities
+                  </option>
+                  <option value="core" selected>
+                    Core business activities
+                  </option>
+                  <option value="sales">
+                    Ongoing client development and leading contract terms
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check-line"
+                ><input id="personalReason" type="checkbox" checked /><span
+                  >The employee chose the location for personal or family
+                  reasons</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="businessReason" type="checkbox" /><span
+                  >The company needs the location to reach clients, suppliers or
+                  resources</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="office" type="checkbox" /><span
+                  >The company no longer provides an available office in the
+                  home country</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="contract" type="checkbox" /><span
+                  >The employee habitually concludes contracts, or contracts are
+                  routinely agreed on terms they develop</span
+                ></label
+              >
+            </div>
+          </section>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <div class="reset-row">
+            <button class="button" type="reset">Reset case</button>
+          </div>
+        </form>
+        <div
+          class="analysis-column"
+          aria-label="Case analysis"
+          aria-live="polite"
+        >
+          <section
+            class="result-section panel employee-analysis"
+            id="employee-analysis"
+            aria-labelledby="employee-heading"
+          >
+            <header class="analysis-heading">
+              <span class="subject-badge">Employee</span>
+              <div>
+                <h2 id="employee-heading">Where is the salary taxed?</h2>
+                <p>Employee income tax · Residence and salary source</p>
+              </div>
+            </header>
+            <div class="result-cards">
+              <div class="result-card">
+                <span>Salary linked to work in Country B</span
+                ><strong id="sourceSalary">—</strong>
+              </div>
+              <div class="result-card">
+                <span>Residence indicators in both countries</span
+                ><strong id="resident">—</strong>
+              </div>
+            </div>
+            <section class="allocation">
+              <h3>Allocate salary by workdays</h3>
+              <div id="allocation-formula" class="allocation-formula"></div>
+              <div id="allocation-bar" class="allocation-bar"></div>
+              <div id="allocation-labels" class="allocation-labels"></div>
+            </section>
+            <section class="condition-section">
+              <h3>Short-term employment exception · Three conditions</h3>
+              <div id="condition-cards" class="condition-cards"></div>
+              <p class="input-help">
+                This example uses an annual period. Check the period and
+                residence requirements in the applicable treaty.
+              </p>
+            </section>
+            <details class="number-details">
+              <summary>Employee tax analysis</summary>
+              <ul class="result-list" id="personal-results"></ul>
+            </details>
+          </section>
+          <section
+            class="result-section panel company-analysis"
+            id="company-analysis"
+            aria-labelledby="company-heading"
+          >
+            <header class="analysis-heading">
+              <span class="subject-badge">Company</span>
+              <div>
+                <h2 id="company-heading">
+                  What tax presence does remote work create?
+                </h2>
+                <p>Permanent establishment · Work location and contracts</p>
+              </div>
+            </header>
+            <p class="concept-note">
+              A permanent establishment is a taxable business presence in
+              another country. Consider home-office use and the employee’s role
+              in contracts separately.
+            </p>
+            <div class="pathway-grid" id="enterprise-paths"></div>
+            <details class="number-details">
+              <summary>Business activity analysis</summary>
+              <ul class="result-list" id="enterprise-results"></ul>
+            </details>
+          </section>
+          <p class="learning-note">
+            This example uses a simplified annual basis. Residence, employment
+            income and permanent establishments must be assessed under the
+            applicable law and tax treaty.
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
