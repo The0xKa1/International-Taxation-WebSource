@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="通过乔丹咨询费案例，比较国际双重征税的三种处理方式。"
+    />
+    <title>乔丹咨询费模拟器 | 国际税收</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      .scenario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+      }
+      .scenario {
+        display: flex;
+        gap: 0.65rem;
+        align-items: flex-start;
+        padding: 1rem;
+        border: 1px solid var(--line, #ddd);
+        border-radius: 14px;
+        cursor: pointer;
+      }
+      .scenario:has(input:checked) {
+        border-color: var(--accent, #e46137);
+        background: #fff5ed;
+      }
+      .scenario input {
+        width: auto;
+        margin: 0.3rem 0 0;
+      }
+      .scenario strong,
+      .scenario span {
+        display: block;
+      }
+      .scenario small {
+        display: block;
+        margin-top: 0.25rem;
+        line-height: 1.5;
+      }
+      .range-label {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .calc-results {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+      .calc-metric {
+        padding: 1rem;
+        background: #fff;
+        border-radius: 14px;
+      }
+      .calc-metric span {
+        display: block;
+        font-size: 0.82rem;
+        color: #6c665e;
+      }
+      .calc-metric strong {
+        display: block;
+        margin-top: 0.35rem;
+        font-size: 1.3rem;
+      }
+      .chart-box {
+        height: 280px;
+        margin-top: 1rem;
+      }
+      .chart-box canvas {
+        width: 100%;
+        height: 100%;
+      }
+      .legend {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        font-size: 0.85rem;
+      }
+      .legend i {
+        display: inline-block;
+        width: 1.25rem;
+        height: 0.2rem;
+        vertical-align: middle;
+        margin-right: 0.35rem;
+        background: var(--c);
+      }
+      .explanation {
+        margin-top: 1rem;
+        line-height: 1.7;
+      }
+      .input-help {
+        font-size: 0.85rem;
+        color: #706960;
+      }
+      .error {
+        color: #a13227;
+        min-height: 1.3em;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      th,
+      td {
+        white-space: nowrap;
+      }
+      .formula-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .formula-list article {
+        padding: 1.2rem;
+        border: 1px solid #ded8cd;
+        border-radius: 14px;
+      }
+      .formula-list h3 {
+        margin: 0.2rem 0;
+      }
+      .formula-list p {
+        margin: 0.5rem 0;
+        color: #655f57;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      @media (max-width: 700px) {
+        .scenario-grid,
+        .calc-results,
+        .formula-list {
+          grid-template-columns: 1fr;
+        }
+        .chart-box {
+          height: 220px;
+        }
+      }
+    </style>
+    <script defer src="./chapter-1.js"></script>
+    <link rel="stylesheet" href="../assets/css/learning.css" />
+    <script defer src="../assets/js/learning.js"></script>
+    <link rel="stylesheet" href="../assets/css/bilingual.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/coin.svg" />
+  </head>
+  <body class="learning chapter-1">
+    <header class="site-header">
+      <a class="brand" href="./index.html"
+        >国际税收 <span>International Taxation</span></a
+      >
+      <nav class="nav-links" aria-label="网站导航">
+        <a href="./index.html">课程首页</a
+        ><a href="./chapter-1.html" aria-current="page">第一章</a
+        ><a href="./chapter-2.html">第二章</a
+        ><a
+          class="language-switch"
+          href="../en/chapter-1.html"
+          lang="en"
+          hreflang="en"
+          aria-label="切换为英文"
+          >English</a
+        >
+      </nav>
+    </header>
+    <main class="page-wrap">
+      <section class="chapter-hero">
+        <p class="eyebrow">CHAPTER 01 / 国际税收的概念</p>
+        <h1>一笔咨询费， 三种税收处理。</h1>
+        <p>调整咨询费和两国税率，看看扣除与抵免如何影响乔丹的税后所得。</p>
+      </section>
+      <button
+        class="parameter-toggle button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="parameter-controls"
+      >
+        调整案例参数 <span aria-hidden="true">＋</span>
+      </button>
+      <div class="workspace">
+        <section
+          class="panel parameter-panel"
+          id="parameter-controls"
+          aria-labelledby="inputs-heading"
+        >
+          <p class="eyebrow">01 / 参数设置</p>
+          <h2 id="inputs-heading">设置案例</h2>
+          <div class="field">
+            <label for="fee">咨询费金额（美元）</label
+            ><input
+              id="fee"
+              type="number"
+              min="0"
+              step="any"
+              value="5000"
+              inputmode="decimal"
+              aria-describedby="fee-help fee-error"
+            />
+            <p class="input-help" id="fee-help">
+              输入非负金额，结果随参数更新。
+            </p>
+            <p class="error" id="fee-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label class="range-label" for="us-rate"
+              ><span>美国税率</span
+              ><output id="us-output" for="us-rate">50%</output></label
+            ><input
+              id="us-rate"
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              step="1"
+            />
+          </div>
+          <div class="field">
+            <label class="range-label" for="ao-rate"
+              ><span>安哥拉税率</span
+              ><output id="ao-output" for="ao-rate">50%</output></label
+            ><input
+              id="ao-rate"
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              step="1"
+            />
+          </div>
+          <fieldset
+            class="field"
+            style="border: 0; padding: 0; margin-inline: 0"
+          >
+            <legend>抵免限额口径</legend>
+            <div class="scenario-grid">
+              <label class="scenario"
+                ><input
+                  type="radio"
+                  name="mode"
+                  value="comparison"
+                  checked
+                /><span
+                  ><strong>教学比较</strong
+                  ><small>假设咨询费为境外来源，抵免额受限额约束。</small></span
+                ></label
+              ><label class="scenario"
+                ><input type="radio" name="mode" value="jordan" /><span
+                  ><strong>乔丹案例</strong
+                  ><small>咨询服务在美国履行，按美国来源所得计算。</small></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <button class="button" type="button" id="reset">
+            恢复初始参数 ↺
+          </button>
+        </section>
+        <section
+          class="panel results"
+          aria-labelledby="results-heading"
+          aria-live="polite"
+        >
+          <p class="eyebrow">02 / 计算结果</p>
+          <h2 id="results-heading">比较税后所得</h2>
+          <p id="mode-note" class="muted"></p>
+          <div class="visual-grid">
+            <section class="income-comparison">
+              <h3>同一笔收入，最后剩下多少？</h3>
+              <p class="input-help">
+                每条横条表示税后所得；金额为负时表示税款超过收入。
+              </p>
+              <div id="income-bars"></div>
+            </section>
+            <section class="trend-panel">
+              <h3>安哥拉税率与税后所得</h3>
+              <div class="legend">
+                <span><i style="--c: #c17a54"></i>不予减除</span
+                ><span><i style="--c: #49758b"></i>税收扣除</span
+                ><span><i style="--c: #72936a"></i>外国税收抵免</span>
+              </div>
+              <div class="chart-box">
+                <canvas
+                  id="chart"
+                  role="img"
+                  aria-label="三种处理方式下税后所得随安哥拉税率变化的图表"
+                ></canvas>
+              </div>
+              <p class="input-help">
+                横轴为安哥拉税率，纵轴为税后所得；虚线表示当前税率。乔丹案例中，抵免曲线与不予减除曲线重合。
+              </p>
+            </section>
+          </div>
+          <section class="worked-example">
+            <div class="process-heading">
+              <h3>跟着算一遍</h3>
+              <div class="method-tabs" role="group" aria-label="选择计算方式">
+                <button type="button" data-method="0" aria-pressed="false">
+                  不予减除</button
+                ><button type="button" data-method="1" aria-pressed="false">
+                  税收扣除</button
+                ><button type="button" data-method="2" aria-pressed="true">
+                  外国税收抵免
+                </button>
+              </div>
+            </div>
+            <div id="calculation-steps" class="calculation-steps"></div>
+          </section>
+          <details class="number-details">
+            <summary>查看完整税额表与抵免限额</summary>
+            <div class="calc-results">
+              <div class="calc-metric">
+                <span>安哥拉税额</span><strong id="ao-tax">—</strong>
+              </div>
+              <div class="calc-metric">
+                <span>美国抵免限额</span><strong id="credit-limit">—</strong>
+              </div>
+              <div class="calc-metric">
+                <span>实际抵免额</span><strong id="credit">—</strong>
+              </div>
+            </div>
+            <div class="table-wrap" id="comparison-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">美国处理方式</th>
+                    <th scope="col">安哥拉税额</th>
+                    <th scope="col">美国税额</th>
+                    <th scope="col">两国税额合计</th>
+                    <th scope="col">税后所得</th>
+                  </tr>
+                </thead>
+                <tbody id="results-body"></tbody>
+              </table>
+            </div>
+          </details>
+        </section>
+      </div>
+      <section class="explanation">
+        <p class="eyebrow">THE IDEA</p>
+        <h2>三种方式，有何不同？</h2>
+        <div class="formula-list">
+          <article>
+            <h3>不予减除</h3>
+            <p>美国直接按咨询费计算税额，已缴纳的安哥拉税不减少美国税。</p>
+          </article>
+          <article>
+            <h3>税收扣除</h3>
+            <p>先从咨询费中扣除安哥拉税额，再计算美国税。</p>
+          </article>
+          <article>
+            <h3>外国税收抵免</h3>
+            <p>先计算美国税，再以抵免限额内的安哥拉税额抵减美国税。</p>
+          </article>
+        </div>
+        <p class="input-help">
+          乔丹案例的零抵免限额假设没有其他同类境外来源所得，也没有依据协定重新确定来源。此处按教材中的简化算例比较。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

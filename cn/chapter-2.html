@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="通过跨境远程办公情境，探索个人所得税与企业常设机构的两条分析路径。"
+    />
+    <title>跨境远程办公 | 国际税收教学资源</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      .chapter-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+      .chapter-layout .panel {
+        padding: clamp(22px, 3vw, 36px);
+      }
+      .form-section + .form-section {
+        border-top: 1px solid var(--line, #deded8);
+        margin-top: 30px;
+        padding-top: 28px;
+      }
+      .form-section h2,
+      .result-section h2 {
+        font-size: 1.2rem;
+        margin: 0 0 8px;
+      }
+      .form-section > p,
+      .result-section > p {
+        margin: 0 0 20px;
+        color: var(--muted, #777);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .field-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin: 0;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label,
+      .field-label {
+        font-weight: 650;
+        font-size: 0.9rem;
+      }
+      .field input[type="number"],
+      .field select {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid #d3d4cd;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #fff;
+        color: #20221e;
+        font: inherit;
+      }
+      .field small {
+        line-height: 1.5;
+        color: var(--muted, #777);
+      }
+      .check-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .check-line {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        cursor: pointer;
+      }
+      .check-line input {
+        margin: 4px 0 0;
+        accent-color: #526c52;
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+      .result-section + .result-section {
+        margin-top: 28px;
+        padding-top: 25px;
+        border-top: 1px solid var(--line, #deded8);
+      }
+      .result-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .result-card {
+        background: #f3f5ed;
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .result-card span {
+        display: block;
+        color: #626b5e;
+        font-size: 0.8rem;
+        margin-bottom: 7px;
+      }
+      .result-card strong {
+        font-size: clamp(1.2rem, 2vw, 1.65rem);
+        overflow-wrap: anywhere;
+      }
+      .result-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .result-list li {
+        position: relative;
+        padding: 0 0 17px 20px;
+        line-height: 1.7;
+        font-size: 0.93rem;
+      }
+      .result-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 7px;
+        height: 7px;
+        background: #769273;
+        border-radius: 50%;
+      }
+      .result-list li:last-child {
+        padding-bottom: 0;
+      }
+      .form-error {
+        color: #a43b31;
+        background: #fff2ef;
+        padding: 12px 14px;
+        border-radius: 10px;
+        line-height: 1.5;
+        margin: 18px 0 0;
+      }
+      .form-error[hidden] {
+        display: none;
+      }
+      .result-placeholder {
+        color: #796d61;
+      }
+      .reset-row {
+        margin-top: 26px;
+      }
+      .learning-note {
+        margin-top: 22px;
+        font-size: 0.85rem;
+        line-height: 1.75;
+        color: #687067;
+      }
+      @media (max-width: 850px) {
+        .chapter-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        .field-grid,
+        .result-cards {
+          grid-template-columns: 1fr;
+        }
+        .field.full {
+          grid-column: auto;
+        }
+      }
+    </style>
+    <script src="chapter-2.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/learning.css" />
+    <link rel="stylesheet" href="../assets/css/chapter-2-layout.css" />
+    <script defer src="../assets/js/learning.js"></script>
+    <link rel="stylesheet" href="../assets/css/bilingual.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/images/coin.svg" />
+  </head>
+  <body class="learning chapter-2">
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        >International Taxation <span>WebSource</span></a
+      >
+      <nav class="nav-links" aria-label="网站导航">
+        <a href="index.html">全部章节</a><a href="chapter-1.html">第一章</a
+        ><a href="chapter-2.html" aria-current="page">第二章</a
+        ><a
+          class="language-switch"
+          href="../en/chapter-2.html"
+          lang="en"
+          hreflang="en"
+          aria-label="切换为英文"
+          >English</a
+        >
+      </nav>
+    </header>
+    <main class="page-wrap">
+      <section class="chapter-hero">
+        <p class="eyebrow">CHAPTER 02 / 国际税收管辖权</p>
+        <h1>跨境远程办公， 税收如何判断？</h1>
+        <p>
+          员工去了另一个国家工作，既要看工资如何征税，也要看公司的境外业务联系。
+        </p>
+      </section>
+      <section class="case-intro" aria-labelledby="case-title">
+        <div class="case-story">
+          <p class="eyebrow">从一个案例开始</p>
+          <h2 id="case-title">小张搬到了 B 国，公司还在 A 国。</h2>
+          <p>
+            小张原来在 A 国生活，受雇于 A 国公司。搬到 B
+            国后，他在家远程办公，继续为这家公司工作。
+          </p>
+          <p class="case-key">同一份工作，分别看两位纳税主体。</p>
+        </div>
+        <div
+          class="relationship"
+          aria-label="A 国公司雇用在 B 国远程办公的小张；公司关注企业利润，小张关注工资所得"
+        >
+          <a class="relation-node company-node" href="#company-analysis"
+            ><span class="entity-place">A 国 · 雇主</span><strong>公司</strong
+            ><span>关注企业利润</span
+            ><span class="entity-question"
+              >境外活动形成什么税收联系？ ↓</span
+            ></a
+          >
+          <div class="relation-link">
+            <span>雇用 · 支付工资</span
+            ><span class="relation-arrow" aria-hidden="true">→</span
+            ><span>← 远程提供劳动</span>
+          </div>
+          <a class="relation-node employee-node" href="#employee-analysis"
+            ><span class="entity-place">B 国 · 工作地</span
+            ><strong>员工小张</strong><span>关注工资所得</span
+            ><span class="entity-question">工资在哪里纳税？ ↓</span></a
+          >
+        </div>
+        <p class="case-caption">
+          下方“工作国”指 B 国，“原居住国”指 A
+          国。两边分别判断，员工的纳税情况不会直接决定公司的结论。
+        </p>
+      </section>
+      <button
+        class="parameter-toggle button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="scenario"
+      >
+        调整案例参数 <span aria-hidden="true">＋</span>
+      </button>
+      <div class="chapter-layout simulator">
+        <form class="panel parameter-panel" id="scenario" novalidate>
+          <section class="form-section">
+            <p class="eyebrow">THE PERSON</p>
+            <h2>个人与劳动地点</h2>
+            <p>以同一年度为例，填写停留和工作情况。</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="days">工作国停留天数</label
+                ><input
+                  id="days"
+                  type="number"
+                  min="0"
+                  max="366"
+                  step="1"
+                  value="210"
+                  required
+                /><small>包含工作日及其他停留日</small>
+              </div>
+              <div class="field">
+                <label for="workdays">工作国实际工作日</label
+                ><input
+                  id="workdays"
+                  type="number"
+                  min="0"
+                  max="366"
+                  step="1"
+                  value="190"
+                  required
+                /><small>在工作国实际工作的天数</small>
+              </div>
+              <div class="field">
+                <label for="salary">年度工资总额（元）</label
+                ><input
+                  id="salary"
+                  type="number"
+                  min="0"
+                  step="any"
+                  value="600000"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="totalwork">年度总工作日</label
+                ><input
+                  id="totalwork"
+                  type="number"
+                  min="1"
+                  max="366"
+                  step="1"
+                  value="240"
+                  required
+                />
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check-line"
+                ><input id="homeResident" type="checkbox" checked /><span
+                  >个人在原居住国仍有住所或持续居民联系</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="hostEmployer" type="checkbox" /><span
+                  >工资由工作国居民雇主支付</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="borne" type="checkbox" /><span
+                  >工资由雇主在工作国的常设机构负担</span
+                ></label
+              >
+            </div>
+          </section>
+          <section class="form-section">
+            <p class="eyebrow">THE BUSINESS</p>
+            <h2>企业在工作国的活动</h2>
+            <p>分别记录住所使用、商业目的与合同活动。</p>
+            <div class="field-grid">
+              <div class="field">
+                <label for="remote">境外住所工作比例（%）</label
+                ><input
+                  id="remote"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="any"
+                  value="75"
+                  required
+                /><small
+                  >相关十二个月内，在该住所为企业工作的时间占为该企业总工作时间的比例</small
+                >
+              </div>
+              <div class="field">
+                <label for="months">持续时间（月）</label
+                ><input
+                  id="months"
+                  type="number"
+                  min="0"
+                  max="120"
+                  step="1"
+                  value="10"
+                  required
+                />
+              </div>
+              <div class="field full">
+                <label for="activity">员工在当地的主要活动</label
+                ><select id="activity">
+                  <option value="aux">内部支持或准备性、辅助性活动</option>
+                  <option value="core" selected>企业核心业务活动</option>
+                  <option value="sales">持续开发客户并主导合同条件</option>
+                </select>
+              </div>
+            </div>
+            <div class="check-list">
+              <label class="check-line"
+                ><input id="personalReason" type="checkbox" checked /><span
+                  >员工因个人或家庭原因选择该工作地点</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="businessReason" type="checkbox" /><span
+                  >企业需要借助当地位置接触客户、供应商或资源</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="office" type="checkbox" /><span
+                  >企业未在原居住国继续提供可使用的办公室</span
+                ></label
+              >
+              <label class="check-line"
+                ><input id="contract" type="checkbox" /><span
+                  >员工经常订立合同，或合同通常按其拟定条件成交</span
+                ></label
+              >
+            </div>
+          </section>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <div class="reset-row">
+            <button class="button" type="reset">恢复初始情境</button>
+          </div>
+        </form>
+        <div class="analysis-column" aria-label="情境分析" aria-live="polite">
+          <section
+            class="result-section panel employee-analysis"
+            id="employee-analysis"
+            aria-labelledby="employee-heading"
+          >
+            <header class="analysis-heading">
+              <span class="subject-badge">员工</span>
+              <div>
+                <h2 id="employee-heading">工资在哪里纳税？</h2>
+                <p>个人所得税分析 · 看居民身份与工资来源</p>
+              </div>
+            </header>
+            <div class="result-cards">
+              <div class="result-card">
+                <span>与 B 国工作相联系的工资</span
+                ><strong id="sourceSalary">—</strong>
+              </div>
+              <div class="result-card">
+                <span>两国居民身份线索</span><strong id="resident">—</strong>
+              </div>
+            </div>
+            <section class="allocation">
+              <h3>工资按工作日分配</h3>
+              <div id="allocation-formula" class="allocation-formula"></div>
+              <div id="allocation-bar" class="allocation-bar"></div>
+              <div id="allocation-labels" class="allocation-labels"></div>
+            </section>
+            <section class="condition-section">
+              <h3>短期受雇例外 · 三项条件</h3>
+              <div id="condition-cards" class="condition-cards"></div>
+              <p class="input-help">
+                采用本例的年度期间；适用时需对应协定规定的期间与居民身份。
+              </p>
+            </section>
+            <details class="number-details">
+              <summary>展开个人所得税分析</summary>
+              <ul class="result-list" id="personal-results"></ul>
+            </details>
+          </section>
+          <section
+            class="result-section panel company-analysis"
+            id="company-analysis"
+            aria-labelledby="company-heading"
+          >
+            <header class="analysis-heading">
+              <span class="subject-badge">公司</span>
+              <div>
+                <h2 id="company-heading">境外办公带来什么税收联系？</h2>
+                <p>企业常设机构分析 · 看办公地点与合同活动</p>
+              </div>
+            </header>
+            <p class="concept-note">
+              “常设机构”是企业在另一国开展业务形成的一种税收联系。这里分别观察住所的使用和员工的合同作用。
+            </p>
+            <div class="pathway-grid" id="enterprise-paths"></div>
+            <details class="number-details">
+              <summary>展开企业活动分析</summary>
+              <ul class="result-list" id="enterprise-results"></ul>
+            </details>
+          </section>
+          <p class="learning-note">
+            本例采用简化的年度口径；居民身份、受雇所得条款与常设机构的具体判断，需要结合适用法律和税收协定。
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
