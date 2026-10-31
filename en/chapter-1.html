@@ -5,143 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Compare three methods of handling international double taxation using Jordan’s consulting fee."
+      content="Compare three treatments of international double taxation through an interactive money flow and guided calculations."
     />
     <title>Jordan’s Consulting Fee | International Taxation</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <style>
-      .scenario-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.7rem;
-      }
-      .scenario {
-        display: flex;
-        gap: 0.65rem;
-        align-items: flex-start;
-        padding: 1rem;
-        border: 1px solid var(--line, #ddd);
-        border-radius: 14px;
-        cursor: pointer;
-      }
-      .scenario:has(input:checked) {
-        border-color: var(--accent, #e46137);
-        background: #fff5ed;
-      }
-      .scenario input {
-        width: auto;
-        margin: 0.3rem 0 0;
-      }
-      .scenario strong,
-      .scenario span {
-        display: block;
-      }
-      .scenario small {
-        display: block;
-        margin-top: 0.25rem;
-        line-height: 1.5;
-      }
-      .range-label {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-      .calc-results {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
-      }
-      .calc-metric {
-        padding: 1rem;
-        background: #fff;
-        border-radius: 14px;
-      }
-      .calc-metric span {
-        display: block;
-        font-size: 0.82rem;
-        color: #6c665e;
-      }
-      .calc-metric strong {
-        display: block;
-        margin-top: 0.35rem;
-        font-size: 1.3rem;
-      }
-      .chart-box {
-        height: 280px;
-        margin-top: 1rem;
-      }
-      .chart-box canvas {
-        width: 100%;
-        height: 100%;
-      }
-      .legend {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        font-size: 0.85rem;
-      }
-      .legend i {
-        display: inline-block;
-        width: 1.25rem;
-        height: 0.2rem;
-        vertical-align: middle;
-        margin-right: 0.35rem;
-        background: var(--c);
-      }
-      .explanation {
-        margin-top: 1rem;
-        line-height: 1.7;
-      }
-      .input-help {
-        font-size: 0.85rem;
-        color: #706960;
-      }
-      .error {
-        color: #a13227;
-        min-height: 1.3em;
-      }
-      .table-wrap {
-        overflow-x: auto;
-      }
-      th,
-      td {
-        white-space: nowrap;
-      }
-      .formula-list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-      .formula-list article {
-        padding: 1.2rem;
-        border: 1px solid #ded8cd;
-        border-radius: 14px;
-      }
-      .formula-list h3 {
-        margin: 0.2rem 0;
-      }
-      .formula-list p {
-        margin: 0.5rem 0;
-        color: #655f57;
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-      @media (max-width: 700px) {
-        .scenario-grid,
-        .calc-results,
-        .formula-list {
-          grid-template-columns: 1fr;
-        }
-        .chart-box {
-          height: 220px;
-        }
-      }
-    </style>
-    <script defer src="./chapter-1.js"></script>
     <link rel="stylesheet" href="../assets/css/learning.css" />
-    <script defer src="../assets/js/learning.js"></script>
+    <link rel="stylesheet" href="../assets/css/chapter-1.css" />
     <link rel="stylesheet" href="../assets/css/bilingual.css" />
+    <script defer src="./chapter-1.js"></script>
+    <script defer src="../assets/js/learning.js"></script>
     <link rel="icon" type="image/svg+xml" href="../assets/images/coin.svg" />
   </head>
   <body class="learning chapter-1">
@@ -167,10 +39,7 @@
       <section class="chapter-hero">
         <p class="eyebrow">CHAPTER 01 / Concepts of international taxation</p>
         <h1>One consulting fee, three tax treatments.</h1>
-        <p>
-          Adjust the fee and tax rates to compare how deductions and credits
-          affect Jordan’s after-tax income.
-        </p>
+        <p>Follow the money to compare no relief, a tax deduction, and a foreign tax credit.</p>
       </section>
       <button
         class="parameter-toggle button"
@@ -189,19 +58,19 @@
           <p class="eyebrow">01 / Inputs</p>
           <h2 id="inputs-heading">Set up the case</h2>
           <div class="field">
-            <label for="fee">Consulting fee (USD)</label
-            ><input
-              id="fee"
-              type="number"
-              min="0"
-              step="any"
-              value="5000"
-              inputmode="decimal"
-              aria-describedby="fee-help fee-error"
-            />
-            <p class="input-help" id="fee-help">
-              Enter a non-negative amount. Results update automatically.
-            </p>
+            <label for="fee">Consulting fee (USD)</label>
+            <div class="money-input">
+              <span aria-hidden="true">$</span
+              ><input
+                id="fee"
+                type="number"
+                min="0"
+                step="any"
+                value="5000"
+                inputmode="decimal"
+                aria-describedby="fee-error"
+              />
+            </div>
             <p class="error" id="fee-error" aria-live="polite"></p>
           </div>
           <div class="field">
@@ -230,11 +99,14 @@
               step="1"
             />
           </div>
-          <fieldset
-            class="field"
-            style="border: 0; padding: 0; margin-inline: 0"
-          >
-            <legend>Credit-limit assumptions</legend>
+          <div class="rate-presets" role="group" aria-label="Set the Angolan tax rate quickly">
+            <span>Try</span>
+            <button type="button" data-rate="30" aria-pressed="false">30%</button>
+            <button type="button" data-rate="50" aria-pressed="true">50%</button>
+            <button type="button" data-rate="70" aria-pressed="false">70%</button>
+          </div>
+          <fieldset class="field">
+            <legend>Source-of-income assumption</legend>
             <div class="scenario-grid">
               <label class="scenario"
                 ><input
@@ -243,144 +115,142 @@
                   value="comparison"
                   checked
                 /><span
-                  ><strong>Teaching comparison</strong
-                  ><small
-                    >Treat the fee as foreign-source income, subject to the
-                    credit limit.</small
-                  ></span
+                  ><strong>Foreign source · Comparison</strong
+                  ><small>Assumes a 100% foreign-source share</small></span
                 ></label
               ><label class="scenario"
                 ><input type="radio" name="mode" value="jordan" /><span
-                  ><strong>Jordan’s case</strong
-                  ><small
-                    >Services are performed in the US; the fee is US-source
-                    income.</small
-                  ></span
+                  ><strong>US source · Jordan’s case</strong
+                  ><small>$0 only under the simplified assumptions</small></span
                 ></label
               >
             </div>
           </fieldset>
-          <button class="button" type="button" id="reset">
-            Reset inputs ↺
-          </button>
+          <button class="button" type="button" id="reset">Reset inputs ↺</button>
         </section>
-        <section
-          class="panel results"
-          aria-labelledby="results-heading"
-          aria-live="polite"
-        >
-          <p class="eyebrow">02 / Results</p>
-          <h2 id="results-heading">Compare after-tax income</h2>
-          <p id="mode-note" class="muted"></p>
-          <div class="visual-grid">
-            <section class="income-comparison">
-              <h3>How much income remains?</h3>
-              <p class="input-help">
-                Bars show after-tax income. Negative amounts mean total tax
-                exceeds income.
-              </p>
-              <div id="income-bars"></div>
-            </section>
-            <section class="trend-panel">
-              <h3>Angolan tax rate and after-tax income</h3>
-              <div class="legend">
-                <span><i style="--c: #c17a54"></i>No relief</span
-                ><span><i style="--c: #49758b"></i>Tax deduction</span
-                ><span><i style="--c: #72936a"></i>Foreign tax credit</span>
-              </div>
-              <div class="chart-box">
-                <canvas
-                  id="chart"
-                  role="img"
-                  aria-label="After-tax income under three methods as the Angolan tax rate changes"
-                ></canvas>
-              </div>
-              <p class="input-help">
-                The horizontal axis shows the Angolan tax rate; the vertical
-                axis shows after-tax income. The vertical dashed line marks the
-                current rate. In Jordan’s case, the credit and no-relief curves
-                overlap.
-              </p>
-            </section>
-          </div>
-          <section class="worked-example">
+        <section class="panel results" aria-labelledby="results-heading">
+          <header class="results-heading">
+            <div>
+              <p class="eyebrow">02 / Visual calculation</p>
+              <h2 id="results-heading">Where does the income go?</h2>
+            </div>
+            <p id="mode-note" class="mode-badge"></p>
+          </header>
+          <aside id="assumption-panel" class="assumption-panel" aria-label="Key assumptions for the current mode"></aside>
+          <section class="comparison" aria-labelledby="comparison-heading">
+            <div class="comparison-heading">
+              <h3 id="comparison-heading">Compare the three methods</h3>
+              <p id="comparison-insight" class="comparison-insight" aria-live="polite"></p>
+            </div>
+            <div class="bar-legend" aria-label="Stacked bar legend">
+              <span><i style="--c: #789174"></i>After-tax income</span>
+              <span><i style="--c: #b77c5b"></i>Angolan tax</span>
+              <span><i style="--c: #5d7d8d"></i>US tax</span>
+              <span><i class="legend-reference"></i>Original fee</span>
+            </div>
+            <div id="income-bars"></div>
+          </section>
+          <section class="worked-example" aria-labelledby="worked-heading">
             <div class="process-heading">
-              <h3>Calculation steps</h3>
-              <div
-                class="method-tabs"
-                role="group"
-                aria-label="Choose a method"
-              >
+              <div>
+                <p>Choose a method</p>
+                <h3 id="worked-heading">Follow the money, step by step</h3>
+              </div>
+              <div class="method-tabs" role="group" aria-label="Choose a calculation method">
                 <button type="button" data-method="0" aria-pressed="false">
-                  No relief</button
+                  <span>No relief</span><small>Same tax base</small></button
                 ><button type="button" data-method="1" aria-pressed="false">
-                  Tax deduction</button
+                  <span>Tax deduction</span><small>Reduce the base</small></button
                 ><button type="button" data-method="2" aria-pressed="true">
-                  Foreign tax credit
+                  <span>Foreign tax credit</span><small>Reduce the tax</small>
                 </button>
               </div>
             </div>
-            <div id="calculation-steps" class="calculation-steps"></div>
-          </section>
-          <details class="number-details">
-            <summary>Full tax table and credit limit</summary>
-            <div class="calc-results">
-              <div class="calc-metric">
-                <span>Angolan tax</span><strong id="ao-tax">—</strong>
+            <div class="money-flow" id="money-flow">
+              <div class="flow-source">
+                <span>Consulting fee</span><strong id="flow-amount">$5,000</strong>
               </div>
-              <div class="calc-metric">
-                <span>US credit limit</span><strong id="credit-limit">—</strong>
-              </div>
-              <div class="calc-metric">
-                <span>Credit applied</span><strong id="credit">—</strong>
+              <svg
+                class="flow-connectors"
+                viewBox="0 0 120 230"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path id="flow-path-ao" d="M0 115 C55 115 55 38 120 38" />
+                <path id="flow-path-us" d="M0 115 L120 115" />
+                <path id="flow-path-after" d="M0 115 C55 115 55 192 120 192" />
+              </svg>
+              <div class="flow-destinations">
+                <div class="flow-node flow-ao" id="flow-node-ao">
+                  <span class="flow-label"><i>AO</i>Angolan tax</span>
+                  <strong id="flow-ao-tax">$2,500</strong>
+                </div>
+                <div class="flow-node flow-us" id="flow-node-us">
+                  <span class="flow-label"><i>US</i>US tax</span>
+                  <strong id="flow-us-tax">$0</strong>
+                </div>
+                <div class="flow-node flow-after" id="flow-node-after">
+                  <span class="flow-label"><i>NET</i>After-tax income</span>
+                  <strong id="flow-after-tax">$2,500</strong>
+                </div>
               </div>
             </div>
-            <div class="table-wrap" id="comparison-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">US tax treatment</th>
-                    <th scope="col">Angolan tax</th>
-                    <th scope="col">US tax</th>
-                    <th scope="col">Combined tax</th>
-                    <th scope="col">After-tax income</th>
-                  </tr>
-                </thead>
-                <tbody id="results-body"></tbody>
-              </table>
+            <p id="flow-insight" class="flow-insight"></p>
+            <div id="calculation-steps" class="calculation-steps"></div>
+          </section>
+          <details class="explore-panel" id="explore-details">
+            <summary>
+              <span>Explore further<small>Rate curves, credit limit, and full tax table</small></span>
+            </summary>
+            <div class="explore-content">
+              <section class="trend-panel" aria-labelledby="trend-heading">
+                <div class="trend-heading">
+                  <h3 id="trend-heading">As the Angolan tax rate changes</h3>
+                  <div class="legend" aria-label="Chart legend">
+                    <span><i style="--c: #a96f50"></i>No relief</span>
+                    <span><i style="--c: #53788a"></i>Tax deduction</span>
+                    <span><i style="--c: #708a70"></i>Foreign tax credit</span>
+                  </div>
+                </div>
+                <div class="chart-box">
+                  <canvas
+                    id="chart"
+                    role="img"
+                    aria-label="After-tax income under three methods as the Angolan tax rate changes; a dashed line and dots mark the current rate"
+                  ></canvas>
+                </div>
+                <p class="chart-note">Horizontal: Angolan tax rate · Vertical: after-tax income · Dots: current results</p>
+              </section>
+              <h3 class="table-heading">Full data for this case</h3>
+              <div class="calc-results">
+                <div class="calc-metric">
+                  <span>Angolan tax</span><strong id="ao-tax">—</strong>
+                </div>
+                <div class="calc-metric">
+                  <span>US credit limit</span><strong id="credit-limit">—</strong>
+                </div>
+                <div class="calc-metric">
+                  <span>Credit applied</span><strong id="credit">—</strong>
+                </div>
+              </div>
+              <div class="table-wrap" id="comparison-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">US tax treatment</th>
+                      <th scope="col">Angolan tax</th>
+                      <th scope="col">US tax</th>
+                      <th scope="col">Combined tax</th>
+                      <th scope="col">After-tax income</th>
+                    </tr>
+                  </thead>
+                  <tbody id="results-body"></tbody>
+                </table>
+              </div>
             </div>
           </details>
         </section>
       </div>
-      <section class="explanation">
-        <p class="eyebrow">THE IDEA</p>
-        <h2>How do the methods differ?</h2>
-        <div class="formula-list">
-          <article>
-            <h3>No relief</h3>
-            <p>
-              US tax is calculated on the full fee. Angolan tax does not reduce
-              US tax.
-            </p>
-          </article>
-          <article>
-            <h3>Tax deduction</h3>
-            <p>Deduct Angolan tax from the fee before calculating US tax.</p>
-          </article>
-          <article>
-            <h3>Foreign tax credit</h3>
-            <p>
-              Calculate US tax, then offset it with Angolan tax up to the credit
-              limit.
-            </p>
-          </article>
-        </div>
-        <p class="input-help">
-          The zero credit limit in Jordan’s case assumes no other foreign-source
-          income in the same category and no treaty re-sourcing. This comparison
-          follows the textbook’s simplified example.
-        </p>
-      </section>
     </main>
   </body>
 </html>
