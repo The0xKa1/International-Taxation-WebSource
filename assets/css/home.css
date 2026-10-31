@@ -15,9 +15,181 @@
 .home .hero-note {
   margin-bottom: 0;
 }
-.home .key-two,
-.home .key-four {
+.home .floating-key {
+  --angle: 0deg;
+  --depth: 8;
+  --duration: 8s;
+  --delay: 0s;
+  animation: finance-float var(--duration) ease-in-out var(--delay) infinite;
+  color: #776a58;
+  will-change: transform;
+}
+.home .floating-key svg {
+  animation: finance-icon-breathe 5.5s ease-in-out var(--delay) infinite;
+}
+.home .key-one {
+  --angle: -14deg;
+  --depth: 11;
+  --duration: 7.6s;
+  --delay: -2.2s;
+  left: 13%;
+  top: 32%;
+}
+.home .key-two {
+  --angle: 18deg;
+  --depth: 7;
+  --duration: 9.2s;
+  --delay: -5.1s;
+  left: 24%;
   top: 10%;
+}
+.home .key-three {
+  --angle: 19deg;
+  --depth: 10;
+  --duration: 8.4s;
+  --delay: -3.6s;
+  right: 14%;
+  top: 37%;
+}
+.home .key-four {
+  --angle: -15deg;
+  --depth: 6;
+  --duration: 10s;
+  --delay: -7s;
+  right: 24%;
+  top: 10%;
+}
+.home .key-five {
+  --angle: 12deg;
+  --depth: 9;
+  --duration: 8.8s;
+  --delay: -4.5s;
+  left: 6%;
+  top: 67%;
+  color: #8b7053;
+}
+.home .key-six {
+  --angle: -9deg;
+  --depth: 5;
+  --duration: 9.6s;
+  --delay: -1.4s;
+  left: 23%;
+  top: 77%;
+  color: #72816b;
+}
+.home .key-six svg {
+  animation: coin-turn 7s ease-in-out -2s infinite;
+  transform-origin: center;
+}
+.home .key-seven {
+  --angle: -13deg;
+  --depth: 9;
+  --duration: 7.9s;
+  --delay: -6.2s;
+  right: 6%;
+  top: 67%;
+  color: #657b82;
+}
+.home .key-eight {
+  --angle: 10deg;
+  --depth: 5;
+  --duration: 10.4s;
+  --delay: -3.2s;
+  right: 23%;
+  top: 77%;
+  color: #8b7053;
+}
+@keyframes finance-float {
+  0%,
+  100% {
+    transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0) translateY(0) rotate(var(--angle));
+  }
+  50% {
+    transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0) translateY(-12px) rotate(calc(var(--angle) + 3deg));
+  }
+}
+@keyframes finance-icon-breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+@keyframes coin-turn {
+  0%,
+  60%,
+  100% {
+    opacity: 0.85;
+    transform: rotateY(0deg);
+  }
+  78% {
+    opacity: 1;
+    transform: rotateY(180deg);
+  }
+  96% {
+    opacity: 0.85;
+    transform: rotateY(360deg);
+  }
+}
+@media (max-width: 760px) {
+  .home .key-one {
+    left: 5%;
+    top: 18%;
+  }
+  .home .key-two {
+    left: 18%;
+    top: 8%;
+  }
+  .home .key-three {
+    right: 5%;
+    top: 18%;
+  }
+  .home .key-four {
+    right: 18%;
+    top: 8%;
+  }
+  .home .key-five {
+    left: 7%;
+    top: 69%;
+  }
+  .home .key-six,
+  .home .key-eight {
+    display: none;
+  }
+  .home .key-seven {
+    right: 7%;
+    top: 69%;
+  }
+}
+@media (max-width: 360px) {
+  .home .key-one,
+  .home .key-three,
+  .home .key-five,
+  .home .key-seven {
+    display: none;
+  }
+}
+@media (max-height: 680px) {
+  .home .key-five,
+  .home .key-six,
+  .home .key-seven,
+  .home .key-eight {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home .floating-key,
+  .home .floating-key svg {
+    animation: none !important;
+    will-change: auto;
+  }
+  .home .floating-key {
+    transform: rotate(var(--angle));
+  }
 }
 .chapter-shelf {
   padding: 55px 0 60px;

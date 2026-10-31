@@ -80,4 +80,32 @@
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+
+  const hero = document.querySelector(".home-hero");
+  const financeIcons = [...hero.querySelectorAll(".floating-key")];
+  const finePointer = window.matchMedia("(pointer: fine)");
+  let iconFrame = 0;
+  function resetIconParallax() {
+    cancelAnimationFrame(iconFrame);
+    financeIcons.forEach((icon) => {
+      icon.style.setProperty("--parallax-x", "0px");
+      icon.style.setProperty("--parallax-y", "0px");
+    });
+  }
+  hero.addEventListener("pointermove", (event) => {
+    if (reducedMotion.matches || !finePointer.matches) return;
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
+    const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
+    cancelAnimationFrame(iconFrame);
+    iconFrame = requestAnimationFrame(() => {
+      financeIcons.forEach((icon) => {
+        const depth = Number(getComputedStyle(icon).getPropertyValue("--depth")) || 0;
+        icon.style.setProperty("--parallax-x", `${x * depth}px`);
+        icon.style.setProperty("--parallax-y", `${y * depth * 0.7}px`);
+      });
+    });
+  });
+  hero.addEventListener("pointerleave", resetIconParallax);
+  reducedMotion.addEventListener("change", resetIconParallax);
 })();
